@@ -7,8 +7,8 @@
       "paddingBottom": "0px",
       "height": "100%"
     });
-    $("#hotpoor_shares").append("<style>\n    .comments_area{\n\n    }\n    .comments_area_tools{\n        position:fixed;\n        bottom:0px;\n        width:100%;\n        height:40px;\n        background-color:#f2f2f2;\n        border-top:1px solid #999;\n    }\n</style>");
-    return $("#hotpoor_shares").append("<div class=\"comments_area\"></div>\n<div class=\"comments_area_tools\">\n    <textarea></textarea><button>发送<button>\n</div>");
+    $("#hotpoor_shares").append("<style>\n    .comments_area{\n\n    }\n    .comments_area_tools{\n        position:fixed;\n        bottom:0px;\n        width:100%;\n        height:40px;\n        background-color:#f2f2f2;\n        border-top:1px solid #d4d4d4;\n    }\n    .comment_content{\n        width:calc(100% - 60px);\n    }\n    .comment_submit{\n        width:60px;\n        height:30px;\n        font-size:18px;\n        font-weight:bold;\n        color:#999999;\n    }\n</style>");
+    return $("#hotpoor_shares").append("<div class=\"comments_area\"></div>\n<div class=\"comments_area_tools\">\n    <textarea class=\"comment_content\"></textarea><button class=\"comment_submit\">发送</button>\n</div>");
   });
 
 }).call(this);
