@@ -8,11 +8,11 @@ $ ->
     <style>
         .comments_area{
             width:100%;
-            height:calc(100% - 40px);
+            height:calc(100% - 44px);
         }
         .comments_area_tools{
             width:100%;
-            height:40px;
+            height:44px;
             background-color:#f2f2f2;
             border-top:1px solid #d4d4d4;
             position:relative;
@@ -24,7 +24,7 @@ $ ->
             resize: none;
             position: absolute;
             left: 4px;
-            top: 2px;
+            top: 3px;
             font-size: 14px;
             padding: 4px;
             height: 26px;
@@ -39,7 +39,7 @@ $ ->
             background-color: #f2f2f2;
             position: absolute;
             right: 4px;
-            bottom: 5px;
+            top: 5px;
             padding-left: 2px;
             padding-right: 2px;
         }
