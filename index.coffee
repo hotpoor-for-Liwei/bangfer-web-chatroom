@@ -18,14 +18,29 @@ $ ->
             border-top:1px solid #d4d4d4;
         }
         .comment_content{
-            width:calc(100% - 60px);
+            width: calc(100% - 82px);
+            border-radius: 4px;
+            border: 1px solid #c3c3c3;
+            resize: none;
+            position: absolute;
+            left: 4px;
+            top: 2px;
+            font-size: 14px;
+            padding: 4px;
+            height: 26px;
         }
         .comment_submit{
-            width:60px;
-            height:30px;
-            font-size:18px;
-            font-weight:bold;
-            color:#999999;
+            width: 60px;
+            height: 30px;
+            font-size: 15px;
+            /* font-weight: bold; */
+            color: #999999;
+            border-radius: 7px;
+            border: 1px solid #c3c3c3;
+            background-color: #f2f2f2;
+            position: absolute;
+            right: 4px;
+            bottom: 5px;
         }
     </style>
     """
