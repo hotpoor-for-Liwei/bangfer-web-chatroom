@@ -9,6 +9,7 @@ $ ->
         .comments_area{
             width:100%;
             height:calc(100% - 44px);
+            overflow-y: auto;
         }
         .comments_area_tools{
             width:100%;
