@@ -7,11 +7,10 @@ $ ->
     $("#hotpoor_shares").append """
     <style>
         .comments_area{
-
+            width:100%;
+            height:calc(100% - 40px);
         }
         .comments_area_tools{
-            position:fixed;
-            bottom:0px;
             width:100%;
             height:40px;
             background-color:#f2f2f2;
@@ -33,7 +32,6 @@ $ ->
             width: 60px;
             height: 30px;
             font-size: 15px;
-            /* font-weight: bold; */
             color: #999999;
             border-radius: 7px;
             border: 1px solid #c3c3c3;
