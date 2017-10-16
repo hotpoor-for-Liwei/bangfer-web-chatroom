@@ -1,4 +1,4 @@
-$() ->
+$ ->
     $("#hotpoor_shares_qrcode_weixin_area").remove()
     $("#hotpoor_shares").css
         "position":"relative"
