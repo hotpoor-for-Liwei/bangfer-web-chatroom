@@ -7,8 +7,19 @@
       "paddingBottom": "0px",
       "height": "100%"
     });
-    $("#hotpoor_shares").append("<style>\n    .comments_area{\n        width:100%;\n        height:calc(100% - 44px);\n    }\n    .comments_area_tools{\n        width:100%;\n        height:44px;\n        background-color:#f2f2f2;\n        border-top:1px solid #d4d4d4;\n        position:relative;\n    }\n    .comment_content{\n        width: calc(100% - 82px);\n        border-radius: 4px;\n        border: 1px solid #c3c3c3;\n        resize: none;\n        position: absolute;\n        left: 4px;\n        top: 3px;\n        font-size: 14px;\n        padding: 4px;\n        height: 26px;\n    }\n    .comment_submit{\n        width: 60px;\n        height: 30px;\n        font-size: 15px;\n        color: #999999;\n        border-radius: 7px;\n        border: 1px solid #c3c3c3;\n        background-color: #f2f2f2;\n        position: absolute;\n        right: 4px;\n        top: 5px;\n        padding-left: 2px;\n        padding-right: 2px;\n    }\n</style>");
-    return $("#hotpoor_shares").append("<div class=\"comments_area\"></div>\n<div class=\"comments_area_tools\">\n    <textarea class=\"comment_content\"></textarea><button class=\"comment_submit\">发送</button>\n</div>");
+    $("#hotpoor_shares").append("<style>\n    .comments_area{\n        width:100%;\n        height:calc(100% - 44px);\n    }\n    .comments_area_tools{\n        width:100%;\n        height:44px;\n        background-color:#f2f2f2;\n        border-top:1px solid #d4d4d4;\n        position:relative;\n    }\n    .comment_content{\n        width: calc(100% - 82px);\n        border-radius: 4px;\n        border: 1px solid #c3c3c3;\n        resize: none;\n        position: absolute;\n        left: 4px;\n        top: 3px;\n        font-size: 14px;\n        padding: 4px;\n        height: 26px;\n    }\n    .comment_submit{\n        width: 60px;\n        height: 30px;\n        font-size: 15px;\n        color: #999999;\n        border-radius: 7px;\n        border: 1px solid #c3c3c3;\n        background-color: #f2f2f2;\n        position: absolute;\n        right: 4px;\n        top: 5px;\n        padding-left: 2px;\n        padding-right: 2px;\n    }\n    .comments_area_main{\n        width:100%;\n        min-height:101%;\n    }\n</style>");
+    $("#hotpoor_shares").append("<div class=\"comments_area\">\n    <div class=\"comments_area_main\"></div>\n</div>\n<div class=\"comments_area_tools\">\n    <textarea class=\"comment_content\"></textarea><button class=\"comment_submit\">发送</button>\n</div>");
+    return $("#hotpoor_shares").on("touchstart", ".comments_area", function(e) {
+      var el_now, scrollTop;
+      el_now = this;
+      scrollTop = el_now.scrollTop;
+      if (scrollTop === 0) {
+        el_now.scrollTop = 1;
+      }
+      if (el_now.scrollTop + el_now.offsetHeight === el_now.scrollHeight) {
+        return el_now.scrollTop = parseInt(el_now.scrollHeight) - parseInt(el_now.offsetHeight) - 1;
+      }
+    });
   });
 
 }).call(this);

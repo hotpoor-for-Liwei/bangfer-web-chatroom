@@ -43,11 +43,26 @@ $ ->
             padding-left: 2px;
             padding-right: 2px;
         }
+        .comments_area_main{
+            width:100%;
+            min-height:101%;
+        }
     </style>
     """
     $("#hotpoor_shares").append """
-        <div class="comments_area"></div>
+        <div class="comments_area">
+            <div class="comments_area_main"></div>
+        </div>
         <div class="comments_area_tools">
             <textarea class="comment_content"></textarea><button class="comment_submit">发送</button>
         </div>
     """
+    $("#hotpoor_shares").on "touchstart",".comments_area",(e)->
+        el_now = this
+        scrollTop = el_now.scrollTop
+        if scrollTop==0
+            el_now.scrollTop = 1
+        if el_now.scrollTop+el_now.offsetHeight==el_now.scrollHeight
+            el_now.scrollTop = (parseInt(el_now.scrollHeight)-parseInt(el_now.offsetHeight)-1)
+
+
