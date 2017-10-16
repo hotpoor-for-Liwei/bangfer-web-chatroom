@@ -15,6 +15,7 @@ $ ->
             height:40px;
             background-color:#f2f2f2;
             border-top:1px solid #d4d4d4;
+            position:relative;
         }
         .comment_content{
             width: calc(100% - 82px);
