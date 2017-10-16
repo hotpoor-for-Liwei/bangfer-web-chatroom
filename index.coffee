@@ -71,7 +71,7 @@ $ ->
             type: 'POST'
             dataType: 'json'
             data:
-                app: WX_APP
+                app: 'bangfer'
                 aim_id: roomId
                 comment_id: rooms_info[roomId].last_comment_id
             success: (data)->
