@@ -41,6 +41,8 @@ $ ->
             position: absolute;
             right: 4px;
             bottom: 5px;
+            padding-left: 2px;
+            padding-right: 2px;
         }
     </style>
     """
