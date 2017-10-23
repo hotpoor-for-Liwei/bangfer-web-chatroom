@@ -61,7 +61,7 @@
           comment_id: rooms_info[roomId].last_comment_id
         },
         success: function(data) {
-          var _msg, comment, comments, item_text, j, len1, members_json_new, members_json_now, results;
+          var _msg, comment, comments, item_text, j, members_json_new, members_json_now, results;
           console.log(data);
           if (data.info === "ok") {
             rooms_info[roomId].last_comment_id = data.last_comment_id;
@@ -70,7 +70,7 @@
             members_json = $.extend({}, members_json_now, members_json_new);
             comments = data.comments;
             results = [];
-            for (j = 0, len1 = comments.length; j < len1; j++) {
+            for (j = comments.length - 1; j >= 0; j += -1) {
               comment = comments[j];
               _msg = [
                 comment[3], {
