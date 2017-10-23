@@ -70,8 +70,9 @@ $ ->
         .wxmsg_headimg.wxmsg_other{
             left:5px;   
         }
-        .wxmsg_head_area>img{
-            width:40px;height:40px;
+        .wxmsg_headimg>img{
+            width:40px;
+            height:40px;
             background-color:rgba(255,255,255,0.8);
             border-radius:2px;
             border:1px solid #333;
@@ -200,8 +201,10 @@ $ ->
         content_type = content.split("//")[0]
         content_values = content.split("//")[1]
 
-        msg_owner = (user_id == USER_ID) ? 'wxmsg_self' : 'wxmsg_other'
-
+        if user_id == USER_ID
+            msg_owner = "wxmsg_self"
+        else
+            msg_owner = "wxmsg_other"
 
         msg_headimg_hide = ""
         msg_nickname_hide = ""
