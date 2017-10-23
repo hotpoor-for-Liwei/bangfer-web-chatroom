@@ -258,12 +258,11 @@ $ ->
             msg_owner = "wxmsg_other"
             msg_html_align = "left"
         
-        if(rooms_info[roomId].createtime - timer < 300){
+        if rooms_info[roomId].createtime - timer < 300
             msg_time_hide = "display:none;"
-        }else{
+        else
             msg_time_hide = ""
             $(".wxmsg[data-comment-flag=#{rooms_info[roomId].createcommentsequence}]>.wxmsg_time").show()
-        }
 
         rooms_info[roomId].createtime = timer
         rooms_info[roomId].createuser = user_id
