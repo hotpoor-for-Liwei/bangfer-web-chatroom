@@ -103,6 +103,7 @@ $ ->
             position: relative;
             width: fit-content;
             min-width:15px;
+            max-width:500px;
         }
         .wxmsg_content.wxmsg_self{
             margin-right: 50px;
