@@ -46,7 +46,7 @@ $ ->
         }
         .wxmsg{
             width:100%;
-            padding:5px 0px;
+            padding:5px 0px 10px 0px;
         }
         .wxmsg_time{
             margin: 2px;
@@ -127,8 +127,8 @@ $ ->
             position: absolute;
             left: -4px;
             top: 13px;
-            box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-            transform: rotate(-45deg);
+            box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+            transform: rotate(45deg);
         }
     </style>
     """
