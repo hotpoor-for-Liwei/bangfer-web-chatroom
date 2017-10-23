@@ -104,7 +104,7 @@
       });
     };
     loadMessage = function(msg) {
-      var comment_id, comment_sequence, content, content_type, content_values, headimg, msgType, msg_headimg_hide, msg_html, msg_nickname_hide, msg_owner, nickname, plus, plus_content, plus_content_destination, plus_type, tel, time, timer, user_id;
+      var comment_id, comment_sequence, content, content_type, content_values, headimg, msgType, msg_headimg_hide, msg_html, msg_html_align, msg_nickname_hide, msg_owner, nickname, plus, plus_content, plus_content_destination, plus_type, tel, time, timer, user_id;
       msgType = msg[0];
       roomId = msg[2];
       content = msg[1].content;
@@ -136,12 +136,14 @@
       content_values = content.split("//")[1];
       if (user_id === USER_ID) {
         msg_owner = "wxmsg_self";
+        msg_html_align = "right";
       } else {
         msg_owner = "wxmsg_other";
+        msg_html_align = "left";
       }
       msg_headimg_hide = "";
       msg_nickname_hide = "";
-      msg_html = "<div class=\"wxmsg " + msg_owner + "\">\n    <div class=\"wxmsg_time\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content + "</div>\n</div>";
+      msg_html = "<div class=\"wxmsg " + msg_owner + "\" align=\"" + msg_html_align + "\">\n    <div class=\"wxmsg_time\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content + "</div>\n</div>";
       return $('.comments_area').prepend(msg_html);
     };
     formatDate = function(now) {

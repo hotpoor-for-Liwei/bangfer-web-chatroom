@@ -252,13 +252,14 @@ $ ->
 
         if user_id == USER_ID
             msg_owner = "wxmsg_self"
+            msg_html_align = "right"
         else
             msg_owner = "wxmsg_other"
-
+            msg_html_align = "left"
         msg_headimg_hide = ""
         msg_nickname_hide = ""
         msg_html = """
-            <div class="wxmsg #{msg_owner}">
+            <div class="wxmsg #{msg_owner}" align="#{msg_html_align}">
                 <div class="wxmsg_time" align="center"><div>#{time}</div></div>
                 <div class="wxmsg_head_area">
                     <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
