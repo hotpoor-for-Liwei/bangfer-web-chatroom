@@ -197,5 +197,7 @@ $ ->
             return month + "月" + date + "日 " + hour + ":" + minute
         return year + "年" + month + "月" + date + "日 " + hour + ":" + minute
 
+    escapeHTML = (str)->
+        return $('<div></div>').text(str).html()
     load_start()
 
