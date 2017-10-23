@@ -73,11 +73,10 @@ $ ->
             left:5px;   
         }
         .wxmsg_headimg>img{
-            width:40px;
-            height:40px;
-            background-color:rgba(255,255,255,0.8);
-            border-radius:2px;
-            border:1px solid #333;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0px 0px 2px rgba(0,0,0,0.05);
         }
         .wxmsg_nickname{
             font-size:14px;
@@ -85,14 +84,27 @@ $ ->
         }
         .wxmsg_nickname.wxmsg_self{
             text-align:right;
-            padding-right:44px;
+            padding-right:54px;
         }
         .wxmsg_nickname.wxmsg_other{
             text-align:left;
-            padding-left:44px;
+            padding-left:54px;
         }
         .wxmsg_content{
-
+            word-break: break-word;
+            background-color: white;
+            padding: 6px;
+            font-size: 14px;
+            line-height: 18px;
+            border-radius: 5px;
+        }
+        .wxmsg_content.wxmsg_self{
+            margin-right: 54px;
+            margin-left: 60px;
+        }
+        .wxmsg_content.wxmsg_other{
+            margin-left: 54px;
+            margin-right: 60px;
         }
     </style>
     """
@@ -225,7 +237,7 @@ $ ->
                     <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
                 </div>
                 <div class="wxmsg_nickname #{msg_owner}"><span>#{nickname}</span></div>
-                <div class="wxmsg_content">#{content}</div>
+                <div class="wxmsg_content #{msg_owner}">#{content}</div>
             </div>
         """
         
