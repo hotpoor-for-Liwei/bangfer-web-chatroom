@@ -84,12 +84,12 @@ $ ->
             "createtime": time_now
             "finishtime": 0
             "room_time_flag": time_now
-            "createuser":""
-            "finishuser":""
-            "createcommentsequence":""
-            "finishcommentsequence":""
-            "latestComment": ""
-            "last_comment_id": ""
+            "createuser":null
+            "finishuser":null
+            "createcommentsequence":null
+            "finishcommentsequence":null
+            "latestComment": null
+            "last_comment_id": null
             "roomNewMsgCount": 0
     members_json = {}
     load_start = ()->
@@ -123,7 +123,79 @@ $ ->
                             "comment_id": data.comment_id,
                         },roomId]
                         console.log _msg
+                        loadMessage(_msg)
+                        if not rooms_info[roomId]["latestComment"]?
+                            rooms_info[roomId]["latestComment"] = _msg
+                            item_text = ""
             error: (error)->
                 console.log(error)
+
+    loadMessage = (msg)->
+        msgType = msg[0]
+        roomId = msg[2]
+        content = msg[1].content
+        content = escapeHTML(content)
+        content = content.replace(/\n/g, '<br>')
+        headimg = msg[1].headimgurl
+        nickname = msg[1].nickname
+        timer = msg[1].time
+        time = formatDate(timer)
+        user_id = msg[1].user_id
+        tel = msg[1].tel
+        plus = msg[1].plus
+        plus_content = escapeHTML(plus.content)
+        plus_type = escapeHTML(plus.type)
+
+        if not plus.destination?
+            plus_content_destination = ""
+        else
+            plus_content_destination = escapeHTML(plus.destination)
+
+        if plus_type == "百度语音转文字"
+            plus_content = plus_content.split("百度语音转文字: ")[1]
+            if plus_content_destination.split("百度语音翻译: ").length==2
+                plus_content_destination = plus_content_destination.split("百度语音翻译: ")[1]
+        comment_id = msg[1].comment_id
+        comment_sequence = msg[1].sequence
+
+        content_type = content.split("//")[0]
+        content_values = content.split("//")[1]
+
+        msg_owner = (user_id == USER_ID) ? 'wxmsg_self' : 'wxmsg_other'
+
+
+        msg_headimg_hide = ""
+        msg_nickname_hide = ""
+        msg_html = """
+            <div class="wxmsg #{msg_owner}">
+                <div class="wxmsg_time">#{time}</div>
+                <div class="wxmsg_head_area">
+                    <div class="wxmsg_headimg"><img src="#{headimg}" style="width:50px;height:50px;"></div>
+                    <div class="wxmsg_nickname><span>#{nickname}</span></div>
+                </div>
+                <div class="wxmsg_content">#{content}</div>
+            </div>
+        """
+        
+        $('.comments_area').prepend msg_html
+
+    formatDate = (now)->
+        now_date = new Date(now * 1000)
+        comment_time_now = new Date
+        year = now_date.getFullYear()
+        month = now_date.getMonth() + 1
+        date = now_date.getDate()
+        hour = now_date.getHours()
+        minute = now_date.getMinutes()
+        if hour < 10
+            hour = "0" + hour
+        if minute < 10
+            minute = "0" + minute
+        if comment_time_now.getFullYear() == year and comment_time_now.getMonth() + 1 == month and comment_time_now.getDate() == date
+            return hour + ":" + minute
+        if comment_time_now.getFullYear() == year
+            return month + "月" + date + "日 " + hour + ":" + minute
+        return year + "年" + month + "月" + date + "日 " + hour + ":" + minute
+
     load_start()
 
