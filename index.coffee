@@ -52,11 +52,11 @@ $ ->
             margin: 2px;
         }
         .wxmsg_time>div{
-            background-color:rgba(0,0,0,0.3);
+            background-color:rgba(0,0,0,0.2);
             border-radius:4px;
             color:white;
             font-size:12px;
-            padding:1px 3px;
+            padding:1px 5px;
             width: fit-content;
         }
         .wxmsg_head_area{
@@ -81,6 +81,7 @@ $ ->
         .wxmsg_nickname{
             font-size:14px;
             color:#999;
+            font-weight:500;
         }
         .wxmsg_nickname.wxmsg_self{
             text-align:right;
