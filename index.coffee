@@ -46,16 +46,18 @@ $ ->
         }
         .wxmsg{
             width:100%;
-            padding:5px auto;
+            padding:5px 0px;
         }
         .wxmsg_time{
             text-align:center;
         }
         .wxmsg_time>div{
-            background-color:rgba(0,0,0,0.6);
+            background-color:rgba(0,0,0,0.3);
+            border-radius:4px;
             color:white;
             font-size:12px;
-            padding:1px 2px;
+            padding:1px 3px;
+            width: fit-content;
         }
         .wxmsg_head_area{
             width:100%;
@@ -210,7 +212,7 @@ $ ->
         msg_nickname_hide = ""
         msg_html = """
             <div class="wxmsg #{msg_owner}">
-                <div class="wxmsg_time"><div>#{time}</div></div>
+                <div class="wxmsg_time" align="center"><div>#{time}</div></div>
                 <div class="wxmsg_head_area">
                     <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
                 </div>
