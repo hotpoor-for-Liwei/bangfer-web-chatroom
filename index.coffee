@@ -44,6 +44,45 @@ $ ->
             padding-left: 2px;
             padding-right: 2px;
         }
+        .wxmsg{
+            width:100%;
+            padding:5px auto;
+        }
+        .wxmsg_time{
+            text-align:center;
+        }
+        .wxmsg_time>div{
+            background-color:rgba(0,0,0,0.6);
+            color:white;
+            font-size:12px;
+            padding:1px 2px;
+        }
+        .wxmsg_head_area{
+            width:100%;
+            position:relative;
+        }
+        .wxmsg_headimg{
+            position:absolute;
+        }
+        .wxmsg_headimg.wxmsg_self{
+            right:5px;
+        }
+        .wxmsg_headimg.wxmsg_other{
+            left:5px;   
+        }
+        .wxmsg_head_area>img{
+            width:40px;height:40px;
+            background-color:rgba(255,255,255,0.8);
+            border-radius:2px;
+            border:1px solid #333;
+        }
+        .wxmsg_nickname{
+            font-size:14px;
+            color:#999;
+        }
+        .wxmsg_content{
+
+        }
     </style>
     """
     $("#hotpoor_shares").append """
@@ -168,11 +207,11 @@ $ ->
         msg_nickname_hide = ""
         msg_html = """
             <div class="wxmsg #{msg_owner}">
-                <div class="wxmsg_time">#{time}</div>
+                <div class="wxmsg_time"><div>#{time}</div></div>
                 <div class="wxmsg_head_area">
-                    <div class="wxmsg_headimg"><img src="#{headimg}" style="width:50px;height:50px;"></div>
-                    <div class="wxmsg_nickname><span>#{nickname}</span></div>
+                    <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
                 </div>
+                <div class="wxmsg_nickname"><span>#{nickname}</span></div>
                 <div class="wxmsg_content">#{content}</div>
             </div>
         """
