@@ -92,6 +92,7 @@ $ ->
             padding-left:50px;
         }
         .wxmsg_content{
+            text-align:left;
             word-break: break-word;
             background-color: white;
             padding: 9px;
