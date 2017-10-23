@@ -73,8 +73,8 @@ $ ->
             left:5px;   
         }
         .wxmsg_headimg>img{
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background-color: rgba(255,255,255,0.8);
             box-shadow: 0px 0px 2px rgba(0,0,0,0.05);
         }
@@ -84,27 +84,51 @@ $ ->
         }
         .wxmsg_nickname.wxmsg_self{
             text-align:right;
-            padding-right:54px;
+            padding-right:50px;
         }
         .wxmsg_nickname.wxmsg_other{
             text-align:left;
-            padding-left:54px;
+            padding-left:50px;
         }
         .wxmsg_content{
             word-break: break-word;
             background-color: white;
-            padding: 6px;
+            padding: 9px;
             font-size: 14px;
             line-height: 18px;
             border-radius: 5px;
+            box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+            position: relative;
         }
         .wxmsg_content.wxmsg_self{
-            margin-right: 54px;
+            margin-right: 50px;
             margin-left: 60px;
         }
+        .wxmsg_content.wxmsg_self:before {
+            content: " ";
+            width: 9px;
+            height: 9px;
+            background-color: white;
+            position: absolute;
+            right: -4px;
+            top: 13px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            transform: rotate(-45deg);
+        }
         .wxmsg_content.wxmsg_other{
-            margin-left: 54px;
+            margin-left: 50px;
             margin-right: 60px;
+        }
+        .wxmsg_content.wxmsg_other:before {
+            content: " ";
+            width: 9px;
+            height: 9px;
+            background-color: white;
+            position: absolute;
+            left: -4px;
+            top: 13px;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            transform: rotate(-45deg);
         }
     </style>
     """
