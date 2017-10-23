@@ -100,6 +100,7 @@ $ ->
             border-radius: 5px;
             box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
             position: relative;
+            width: fit-content;
         }
         .wxmsg_content.wxmsg_self{
             margin-right: 50px;
@@ -142,6 +143,7 @@ $ ->
     """
     $("#hotpoor_shares").on "touchstart",".comments_area",(e)->
         el_now = this
+        console.log(this)
         scrollTop = el_now.scrollTop
         if scrollTop==0
             el_now.scrollTop = 1
