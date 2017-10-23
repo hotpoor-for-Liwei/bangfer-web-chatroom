@@ -257,11 +257,25 @@ $ ->
         else
             msg_owner = "wxmsg_other"
             msg_html_align = "left"
+        
+        if(rooms_info[roomId].createtime - timer < 300){
+            msg_time_hide = "display:none;"
+        }else{
+            msg_time_hide = ""
+            $(".wxmsg[data-comment-flag=#{rooms_info[roomId].createcommentsequence}]>.wxmsg_time").show()
+        }
+
+        rooms_info[roomId].createtime = timer
+        rooms_info[roomId].createuser = user_id
+        rooms_info[roomId].createcommentsequence = comment_id+"_"+comment_sequence
+
+        
+
         msg_headimg_hide = ""
         msg_nickname_hide = ""
         msg_html = """
-            <div class="wxmsg #{msg_owner}" align="#{msg_html_align}">
-                <div class="wxmsg_time" align="center"><div>#{time}</div></div>
+            <div class="wxmsg #{msg_owner}" data-comment-flag="#{comment_id}_#{comment_sequence}" align="#{msg_html_align}">
+                <div class="wxmsg_time" style="#{msg_time_hide}" align="center"><div>#{time}</div></div>
                 <div class="wxmsg_head_area">
                     <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
                 </div>
