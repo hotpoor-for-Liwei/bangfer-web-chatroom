@@ -136,7 +136,9 @@ $ ->
             transform: rotate(45deg);
         }
         .wxmsg_content_hqwebimg,.wxmsg_content_hwebimg{
-            width:100%;
+            max-width:100%;
+            min-width:10px;
+            max-height:200px;
         }
     </style>
     """
