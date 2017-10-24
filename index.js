@@ -233,8 +233,8 @@
                 $(".wxmsg[data-comment-flag=" + rooms_info[roomId].finishcommentsequence + "]")[0].scrollIntoView(false);
               }
             }
-            isLoadingMore = false;
-            return $(".wxmsg_load_tip").remove();
+            $(".wxmsg_load_tip").remove();
+            return isLoadingMore = false;
           }
         },
         error: function(error) {
