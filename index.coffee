@@ -362,8 +362,12 @@ $ ->
                             rooms_info[currentRoomId]["latestComment"] = _msg
                             item_text = ""
                             $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
-                    $(".wxmsg_load_tip").remove()
-                    isLoadingMore = false
+                    $(".wxmsg_load_tip").text("加载成功！")
+                    setTimeout ()->
+                        $(".wxmsg_load_tip").remove()
+                        isLoadingMore = false
+                    , 1000
+                    
             error: (error)->
                 console.log(error)
 

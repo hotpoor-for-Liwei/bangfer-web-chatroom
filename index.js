@@ -233,8 +233,11 @@
                 $(".wxmsg[data-comment-flag=" + rooms_info[roomId].finishcommentsequence + "]")[0].scrollIntoView(false);
               }
             }
-            $(".wxmsg_load_tip").remove();
-            return isLoadingMore = false;
+            $(".wxmsg_load_tip").text("加载成功！");
+            return setTimeout(function() {
+              $(".wxmsg_load_tip").remove();
+              return isLoadingMore = false;
+            }, 1000);
           }
         },
         error: function(error) {
