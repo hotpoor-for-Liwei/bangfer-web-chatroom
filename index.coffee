@@ -347,6 +347,7 @@ $ ->
                     members_json_new = data.members
                     members_json = $.extend({}, members_json_now,members_json_new)
                     comments = data.comments
+                    commentsequence_flag = rooms_info[roomId].finishcommentsequence
                     for comment in comments by -1
                         _msg = [comment[3],{
                             "content": comment[4],
@@ -361,6 +362,7 @@ $ ->
                         },roomId]
                         console.log _msg
                         loadMessage(_msg)
+                        $(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0].scrollIntoView(false)
                         if not rooms_info[currentRoomId]["latestComment"]?
                             rooms_info[currentRoomId]["latestComment"] = _msg
                             item_text = ""

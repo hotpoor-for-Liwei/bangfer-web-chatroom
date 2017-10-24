@@ -202,7 +202,7 @@
           comment_id: rooms_info[currentRoomId].last_comment_id
         },
         success: function(data) {
-          var _msg, comment, comments, item_text, j, members_json_new, members_json_now;
+          var _msg, comment, comments, commentsequence_flag, item_text, j, members_json_new, members_json_now;
           console.log(data);
           if (data.info === "ok") {
             rooms_info[currentRoomId].last_comment_id = data.last_comment_id;
@@ -210,6 +210,7 @@
             members_json_new = data.members;
             members_json = $.extend({}, members_json_now, members_json_new);
             comments = data.comments;
+            commentsequence_flag = rooms_info[roomId].finishcommentsequence;
             for (j = comments.length - 1; j >= 0; j += -1) {
               comment = comments[j];
               _msg = [
@@ -227,6 +228,7 @@
               ];
               console.log(_msg);
               loadMessage(_msg);
+              $(".wxmsg[data-comment-flag=" + commentsequence_flag + "]")[0].scrollIntoView(false);
               if (rooms_info[currentRoomId]["latestComment"] == null) {
                 rooms_info[currentRoomId]["latestComment"] = _msg;
                 item_text = "";
