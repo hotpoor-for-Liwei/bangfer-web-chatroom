@@ -264,7 +264,7 @@ $ ->
             msg_time_hide = "display:none;"
         else
             msg_time_hide = ""
-            $(".wxmsg[data-comment-flag=#{rooms_info[roomId].createcommentsequence}]>.wxmsg_time").show()
+            # $(".wxmsg[data-comment-flag=#{rooms_info[roomId].createcommentsequence}]>.wxmsg_time").show()
 
         rooms_info[roomId].createtime = timer
         rooms_info[roomId].createuser = user_id
