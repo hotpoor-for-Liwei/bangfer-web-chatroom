@@ -174,7 +174,7 @@ $ ->
             "imgUrl": imgUrl
             "roomName": roomName
             "createtime": time_now
-            "finishtime": 0
+            "finishtime": null
             "room_time_flag": time_now
             "createuser":null
             "finishuser":null
@@ -219,6 +219,7 @@ $ ->
                         if not rooms_info[roomId]["latestComment"]?
                             rooms_info[roomId]["latestComment"] = _msg
                             item_text = ""
+                            $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
             error: (error)->
                 console.log(error)
 
@@ -267,8 +268,10 @@ $ ->
         rooms_info[roomId].createtime = timer
         rooms_info[roomId].createuser = user_id
         rooms_info[roomId].createcommentsequence = comment_id+"_"+comment_sequence
-
-        
+        if not rooms_info[roomId].finishtime?
+            rooms_info[roomId].finishtime = timer
+        if not rooms_info[roomId].finishcommentsequence?
+            rooms_info[roomId].finishcommentsequence = comment_id+"_"+comment_sequence
 
         msg_headimg_hide = ""
         msg_nickname_hide = ""

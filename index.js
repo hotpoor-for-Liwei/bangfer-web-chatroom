@@ -38,7 +38,7 @@
         "imgUrl": imgUrl,
         "roomName": roomName,
         "createtime": time_now,
-        "finishtime": 0,
+        "finishtime": null,
         "room_time_flag": time_now,
         "createuser": null,
         "finishuser": null,
@@ -90,7 +90,8 @@
               loadMessage(_msg);
               if (rooms_info[roomId]["latestComment"] == null) {
                 rooms_info[roomId]["latestComment"] = _msg;
-                results.push(item_text = "");
+                item_text = "";
+                results.push($(".wxmsg[data-comment-flag=" + rooms_info[roomId].finishcommentsequence + "]")[0].scrollIntoView(false));
               } else {
                 results.push(void 0);
               }
@@ -149,6 +150,12 @@
       rooms_info[roomId].createtime = timer;
       rooms_info[roomId].createuser = user_id;
       rooms_info[roomId].createcommentsequence = comment_id + "_" + comment_sequence;
+      if (rooms_info[roomId].finishtime == null) {
+        rooms_info[roomId].finishtime = timer;
+      }
+      if (rooms_info[roomId].finishcommentsequence == null) {
+        rooms_info[roomId].finishcommentsequence = comment_id + "_" + comment_sequence;
+      }
       msg_headimg_hide = "";
       msg_nickname_hide = "";
       msg_html = "<div class=\"wxmsg " + msg_owner + "\" data-comment-flag=\"" + comment_id + "_" + comment_sequence + "\" align=\"" + msg_html_align + "\">\n    <div class=\"wxmsg_time\" style=\"" + msg_time_hide + "\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content + "</div>\n</div>";
