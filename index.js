@@ -108,7 +108,7 @@
       return $(".wxmsg[data-comment-flag=" + rooms_info[roomId].finishcommentsequence + "]")[0].scrollIntoView(false);
     });
     loadMessage = function(msg) {
-      var comment_id, comment_sequence, content, content_type, content_values, headimg, msgType, msg_headimg_hide, msg_html, msg_html_align, msg_nickname_hide, msg_owner, msg_time_hide, nickname, plus, plus_content, plus_content_destination, plus_type, tel, time, timer, user_id;
+      var comment_id, comment_sequence, content, content_html, content_type, content_values, error_img, headimg, msgType, msg_headimg_hide, msg_html, msg_html_align, msg_nickname_hide, msg_owner, msg_time_hide, nickname, plus, plus_content, plus_content_destination, plus_type, tel, time, timer, user_id;
       msgType = msg[0];
       roomId = msg[2];
       content = msg[1].content;
@@ -161,7 +161,16 @@
       }
       msg_headimg_hide = "";
       msg_nickname_hide = "";
-      msg_html = "<div class=\"wxmsg " + msg_owner + "\" data-comment-flag=\"" + comment_id + "_" + comment_sequence + "\" align=\"" + msg_html_align + "\">\n    <div class=\"wxmsg_time\" style=\"" + msg_time_hide + "\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content + "</div>\n</div>";
+      error_img = "http://www.hotpoor.org/static/img/tools/error_img_" + parseInt(Math.random() * 10 % 2) + ".png";
+      content_html = "" + content;
+      if (msgType === "COMMENT") {
+        if (content_type === "HQWEBIMG") {
+          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hqwebimg\" src=\"http://image.hotpoor.org/" + roomId + "_" + content_values + "?imageView2/2/w/320\" onerror=\"this.src='" + error_img + "'\">";
+        } else if (content_type === "HWEBIMG") {
+          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hwebimg\" src=\"" + content_values + "\" onerror=\"this.src='" + error_img + "'\" >";
+        }
+      }
+      msg_html = "<div class=\"wxmsg " + msg_owner + "\" data-comment-flag=\"" + comment_id + "_" + comment_sequence + "\" align=\"" + msg_html_align + "\">\n    <div class=\"wxmsg_time\" style=\"" + msg_time_hide + "\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content_html + "</div>\n</div>";
       return $('.comments_area').prepend(msg_html);
     };
     formatDate = function(now) {

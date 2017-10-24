@@ -276,6 +276,18 @@ $ ->
 
         msg_headimg_hide = ""
         msg_nickname_hide = ""
+        error_img = "http://www.hotpoor.org/static/img/tools/error_img_"+parseInt(Math.random()*10%2)+".png"
+        content_html = "#{content}"
+        if msgType == "COMMENT"
+            if content_type == "HQWEBIMG"
+                content_html = """
+                    <img crossorigin="Anonymous" class="wxmsg_content_hqwebimg" src="http://image.hotpoor.org/#{roomId}_#{content_values}?imageView2/2/w/320" onerror="this.src='#{error_img}'">
+                """
+            else if content_type == "HWEBIMG"
+                content_html = """
+                    <img crossorigin="Anonymous" class="wxmsg_content_hwebimg" src="#{content_values}" onerror="this.src='#{error_img}'" >
+                """
+
         msg_html = """
             <div class="wxmsg #{msg_owner}" data-comment-flag="#{comment_id}_#{comment_sequence}" align="#{msg_html_align}">
                 <div class="wxmsg_time" style="#{msg_time_hide}" align="center"><div>#{time}</div></div>
@@ -283,7 +295,7 @@ $ ->
                     <div class="wxmsg_headimg #{msg_owner}"><img src="#{headimg}"></div>
                 </div>
                 <div class="wxmsg_nickname #{msg_owner}"><span>#{nickname}</span></div>
-                <div class="wxmsg_content #{msg_owner}">#{content}</div>
+                <div class="wxmsg_content #{msg_owner}">#{content_html}</div>
             </div>
         """
         
