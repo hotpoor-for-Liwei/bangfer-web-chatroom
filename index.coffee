@@ -162,6 +162,9 @@ $ ->
             margin-right: 50px;
             margin-left: 60px;
         }
+        .wxmsg_content.wxmsg_self.wxmsg_face:before,.wxmsg_content.wxmsg_other.wxmsg_face:before{
+            display:none;
+        }
     </style>
     """
     $("#hotpoor_shares").append """
