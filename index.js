@@ -142,10 +142,9 @@
         msg_html_align = "left";
       }
       console.log((rooms_info[roomId].createtime + " - " + timer + " = ") + (rooms_info[roomId].createtime - timer));
+      msg_time_hide = "";
       if (rooms_info[roomId].createtime - timer < 300) {
-        msg_time_hide = "display:none;";
-      } else {
-        msg_time_hide = "";
+        $(".wxmsg[data-comment-flag=" + rooms_info[roomId].createcommentsequence + "]>.wxmsg_time").hide();
       }
       rooms_info[roomId].createtime = timer;
       rooms_info[roomId].createuser = user_id;
