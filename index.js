@@ -246,7 +246,7 @@
     onRoomScroll = function(evt) {
       var cu_el, cu_roomId, cu_scrollTop;
       cu_el = $(evt.currentTarget);
-      cu_roomId = cu_roomId.data("room-id");
+      cu_roomId = cu_el.data("room-id");
       cu_scrollTop = cu_el.scrollTop();
       if (cu_scrollTop < 10 && !isLoadingMore) {
         if (rooms_info[cu_roomId].last_comment_id != null) {
