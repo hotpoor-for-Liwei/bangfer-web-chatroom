@@ -181,11 +181,11 @@
           rooms_info[roomId].roomImages.unshift(img_uri);
           content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hqwebimg\" data-uri=\"" + img_uri + "\" src=\"http://image.hotpoor.org/" + roomId + "_" + content_values + "?imageView2/2/w/320\" onerror=\"this.src='" + error_img + "'\">";
         } else if (content_type === "HWEBIMG") {
-          img_uri = "" + content_values;
+          img_uri = decodeURIComponent(content_values);
           rooms_info[roomId].roomImages.unshift(img_uri);
           content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hwebimg\" data-uri=\"" + img_uri + "\" src=\"" + content_values + "\" onerror=\"this.src='" + error_img + "'\" >";
         } else if (content_type === "HWEBFACEIMG") {
-          face_url = "" + content_values;
+          face_url = decodeURIComponent(content_values);
           content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_face\" src=\"" + face_url + "\" onerror=\"this.src='" + error_img + "'\" >";
         }
       }
