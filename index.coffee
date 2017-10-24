@@ -300,6 +300,7 @@ $ ->
         error_img = "http://www.hotpoor.org/static/img/tools/error_img_"+parseInt(Math.random()*10%2)+".png"
         content_html = "#{content}"
         if msgType == "COMMENT"
+            content_values = content.split(content_type+"//")[1]
             if content_type == "HQWEBIMG"
                 img_uri = "http://image.hotpoor.org/#{roomId}_#{content_values}?imageView2"
                 rooms_info[roomId].roomImages.unshift(img_uri)
