@@ -146,6 +146,10 @@ $ ->
             font-size:14px;
             padding:5px;
         }
+        .wxmsg_face{
+            width:60px;
+            height:auto;
+        }
     </style>
     """
     $("#hotpoor_shares").append """
@@ -312,6 +316,11 @@ $ ->
                 rooms_info[roomId].roomImages.unshift(img_uri)
                 content_html = """
                     <img crossorigin="Anonymous" class="wxmsg_content_hwebimg" data-uri="#{img_uri}" src="#{content_values}" onerror="this.src='#{error_img}'" >
+                """
+            else if content_type == "HWEBFACEIMG"
+                face_url = "#{content_values}"
+                content_html = """
+                    <img crossorigin="Anonymous" class="wxmsg_face" src="#{face_url}" onerror="this.src='#{error_img}'" >
                 """
 
         msg_html = """
