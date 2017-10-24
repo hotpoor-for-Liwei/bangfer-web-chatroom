@@ -146,9 +146,21 @@ $ ->
             font-size:14px;
             padding:5px;
         }
-        .wxmsg_face{
+        .wxmsg_face_img{
             width:60px;
             height:auto;
+        }
+        .wxmsg_content.wxmsg_other_wxmsg_face{
+            box-shadow:none;
+            background-color:unset;
+            margin-left: 50px;
+            margin-right: 60px;
+        }
+        .wxmsg_content.wxmsg_self_wxmsg_face{
+            box-shadow:none;
+            background-color:unset;
+            margin-right: 50px;
+            margin-left: 60px;
         }
     </style>
     """
@@ -319,8 +331,9 @@ $ ->
                 """
             else if content_type == "HWEBFACEIMG"
                 face_url = decodeURIComponent(content_values)
+                msg_owner = "#{msg_owner}_wxmsg_face"
                 content_html = """
-                    <img crossorigin="Anonymous" class="wxmsg_face" src="#{face_url}" onerror="this.src='#{error_img}'" >
+                    <img crossorigin="Anonymous" class="wxmsg_face_img" src="#{face_url}" onerror="this.src='#{error_img}'" >
                 """
 
         msg_html = """
