@@ -150,13 +150,13 @@ $ ->
             width:60px;
             height:auto;
         }
-        .wxmsg_content.wxmsg_other_wxmsg_face{
+        .wxmsg_content.wxmsg_other.wxmsg_face{
             box-shadow:none;
             background-color:unset;
             margin-left: 50px;
             margin-right: 60px;
         }
-        .wxmsg_content.wxmsg_self_wxmsg_face{
+        .wxmsg_content.wxmsg_self.wxmsg_face{
             box-shadow:none;
             background-color:unset;
             margin-right: 50px;
@@ -331,7 +331,7 @@ $ ->
                 """
             else if content_type == "HWEBFACEIMG"
                 face_url = decodeURIComponent(content_values)
-                msg_owner = "#{msg_owner}_wxmsg_face"
+                msg_owner = "#{msg_owner} wxmsg_face"
                 content_html = """
                     <img crossorigin="Anonymous" class="wxmsg_face_img" src="#{face_url}" onerror="this.src='#{error_img}'" >
                 """
