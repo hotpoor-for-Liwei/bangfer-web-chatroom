@@ -157,7 +157,6 @@ $ ->
     """
     $("#hotpoor_shares").on "touchstart",".comments_area",(e)->
         el_now = this
-        console.log(this)
         scrollTop = el_now.scrollTop
         if scrollTop==0
             el_now.scrollTop = 1

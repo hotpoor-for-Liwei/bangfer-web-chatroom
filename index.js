@@ -13,7 +13,6 @@
     $("#hotpoor_shares").on("touchstart", ".comments_area", function(e) {
       var el_now, scrollTop;
       el_now = this;
-      console.log(this);
       scrollTop = el_now.scrollTop;
       if (scrollTop === 0) {
         el_now.scrollTop = 1;
