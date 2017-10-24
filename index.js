@@ -110,7 +110,8 @@
     });
     $("body").on("click", ".wxmsg_content_hqwebimg,.wxmsg_content_hwebimg", function(evt) {
       return wx.previewImage({
-        current: this.src
+        current: $(this).attr("data-uri"),
+        urls: rooms_info[roomId].roomImages
       });
     });
     loadMessage = function(msg) {
@@ -173,11 +174,11 @@
         if (content_type === "HQWEBIMG") {
           img_uri = "http://image.hotpoor.org/" + roomId + "_" + content_values + "?imageView2";
           rooms_info[roomId].roomImages.unshift(img_uri);
-          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hqwebimg\" src=\"http://image.hotpoor.org/" + roomId + "_" + content_values + "?imageView2/2/w/320\" onerror=\"this.src='" + error_img + "'\">";
+          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hqwebimg\" data-uri=\"" + img_uri + "\" src=\"http://image.hotpoor.org/" + roomId + "_" + content_values + "?imageView2/2/w/320\" onerror=\"this.src='" + error_img + "'\">";
         } else if (content_type === "HWEBIMG") {
           img_uri = "" + content_values;
           rooms_info[roomId].roomImages.unshift(img_uri);
-          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hwebimg\" src=\"" + content_values + "\" onerror=\"this.src='" + error_img + "'\" >";
+          content_html = "<img crossorigin=\"Anonymous\" class=\"wxmsg_content_hwebimg\" data-uri=\"" + img_uri + "\" src=\"" + content_values + "\" onerror=\"this.src='" + error_img + "'\" >";
         }
       }
       msg_html = "<div class=\"wxmsg " + msg_owner + "\" data-comment-flag=\"" + comment_id + "_" + comment_sequence + "\" align=\"" + msg_html_align + "\">\n    <div class=\"wxmsg_time\" style=\"" + msg_time_hide + "\" align=\"center\"><div>" + time + "</div></div>\n    <div class=\"wxmsg_head_area\">\n        <div class=\"wxmsg_headimg " + msg_owner + "\"><img src=\"" + headimg + "\"></div>\n    </div>\n    <div class=\"wxmsg_nickname " + msg_owner + "\"><span>" + nickname + "</span></div>\n    <div class=\"wxmsg_content " + msg_owner + "\">" + content_html + "</div>\n</div>";
