@@ -141,6 +141,7 @@
         msg_owner = "wxmsg_other";
         msg_html_align = "left";
       }
+      console.log((rooms_info[roomId].createtime + " - " + timer + " = ") + (rooms_info[roomId].createtime - timer));
       if (rooms_info[roomId].createtime - timer < 300) {
         msg_time_hide = "display:none;";
       } else {
