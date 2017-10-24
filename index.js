@@ -26,6 +26,7 @@
     initialRoomId = "0cd8429c1da249b6935d7eef72d7fc0b";
     initialRoomImg = "http://image.hotpoor.org/2dd2c53e7c654c66b398e574848d4c34_08aed20957caca43b0df23442de17f6f?imageView2/2/w/200";
     initialRoomName = "夏力维和他的朋友们";
+    isLoadingMore = false;
     base_rooms = [[initialRoomId, initialRoomImg, initialRoomName]];
     rooms_info = {};
     for (i = 0, len = base_rooms.length; i < len; i++) {
@@ -189,7 +190,6 @@
       return $('.comments_area').prepend(msg_html);
     };
     loadHistory = function(currentRoomId) {
-      var isLoadingMore;
       isLoadingMore = true;
       $('.comments_area').prepend("<div class=\"wxmsg_load_tip\">加载中...</div>");
       return $.ajax({
@@ -245,7 +245,6 @@
         }
       });
     };
-    isLoadingMore = false;
     onRoomScroll = function(evt) {
       var cu_el, cu_roomId, cu_scrollTop;
       cu_el = $(evt.currentTarget);

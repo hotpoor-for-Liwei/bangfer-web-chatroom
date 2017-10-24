@@ -168,6 +168,7 @@ $ ->
     initialRoomId = "0cd8429c1da249b6935d7eef72d7fc0b"
     initialRoomImg = "http://image.hotpoor.org/2dd2c53e7c654c66b398e574848d4c34_08aed20957caca43b0df23442de17f6f?imageView2/2/w/200"
     initialRoomName = "夏力维和他的朋友们"
+    isLoadingMore = false
     base_rooms = [
         [
             initialRoomId
@@ -175,7 +176,9 @@ $ ->
             initialRoomName
         ]
     ]
+
     rooms_info = {}
+
     for base_room in base_rooms
         roomId = base_room[0]
         imgUrl = base_room[1]
@@ -371,7 +374,6 @@ $ ->
             error: (error)->
                 console.log(error)
 
-    isLoadingMore = false
     onRoomScroll = (evt)->
         cu_el = $(evt.currentTarget)
         cu_roomId = cu_el.data("room-id")
