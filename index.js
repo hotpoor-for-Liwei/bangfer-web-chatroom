@@ -210,7 +210,7 @@
             members_json_new = data.members;
             members_json = $.extend({}, members_json_now, members_json_new);
             comments = data.comments;
-            commentsequence_flag = rooms_info[roomId].finishcommentsequence;
+            commentsequence_flag = rooms_info[roomId].createcommentsequence;
             for (j = comments.length - 1; j >= 0; j += -1) {
               comment = comments[j];
               _msg = [
