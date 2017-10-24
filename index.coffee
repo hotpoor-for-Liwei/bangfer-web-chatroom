@@ -32,7 +32,7 @@ $ ->
         }
         .comment_submit{
             width: 60px;
-            height: 30px;
+            height: 32px;
             font-size: 15px;
             color: #999999;
             border-radius: 7px;
