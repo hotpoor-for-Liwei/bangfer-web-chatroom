@@ -222,7 +222,8 @@ $ ->
                             $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
             error: (error)->
                 console.log(error)
-
+    $("body").on "click","#bangfer_shares",(evt)->
+        $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
     loadMessage = (msg)->
         msgType = msg[0]
         roomId = msg[2]

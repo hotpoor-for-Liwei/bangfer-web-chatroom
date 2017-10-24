@@ -104,6 +104,9 @@
         }
       });
     };
+    $("body").on("click", "#bangfer_shares", function(evt) {
+      return $(".wxmsg[data-comment-flag=" + rooms_info[roomId].finishcommentsequence + "]")[0].scrollIntoView(false);
+    });
     loadMessage = function(msg) {
       var comment_id, comment_sequence, content, content_type, content_values, headimg, msgType, msg_headimg_hide, msg_html, msg_html_align, msg_nickname_hide, msg_owner, msg_time_hide, nickname, plus, plus_content, plus_content_destination, plus_type, tel, time, timer, user_id;
       msgType = msg[0];
