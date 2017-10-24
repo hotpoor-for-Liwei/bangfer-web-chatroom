@@ -135,6 +135,9 @@ $ ->
             box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
             transform: rotate(45deg);
         }
+        .wxmsg_content_hqwebimg,.wxmsg_content_hwebimg{
+            width:100%;
+        }
     </style>
     """
     $("#hotpoor_shares").append """
@@ -183,6 +186,7 @@ $ ->
             "latestComment": null
             "last_comment_id": null
             "roomNewMsgCount": 0
+            "roomImages":[]
     members_json = {}
     load_start = ()->
         $(".comments_area").empty()
@@ -224,6 +228,10 @@ $ ->
                 console.log(error)
     $("body").on "click","#bangfer_shares",(evt)->
         $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
+    $("body").on "click",".wxmsg_content_hqwebimg,.wxmsg_content_hwebimg",(evt)->
+        wx.previewImage
+            current: this.src, #当前显示图片的http链接
+            urls: rooms_info[roomId].roomImages #需要预览的图片http链接列表
     loadMessage = (msg)->
         msgType = msg[0]
         roomId = msg[2]
@@ -280,10 +288,14 @@ $ ->
         content_html = "#{content}"
         if msgType == "COMMENT"
             if content_type == "HQWEBIMG"
+                img_uri = "http://image.hotpoor.org/#{roomId}_#{content_values}?imageView2"
+                rooms_info[roomId].roomImages.unshift(img_uri)
                 content_html = """
                     <img crossorigin="Anonymous" class="wxmsg_content_hqwebimg" src="http://image.hotpoor.org/#{roomId}_#{content_values}?imageView2/2/w/320" onerror="this.src='#{error_img}'">
                 """
             else if content_type == "HWEBIMG"
+                img_uri = "#{content_values}"
+                rooms_info[roomId].roomImages.unshift(img_uri)
                 content_html = """
                     <img crossorigin="Anonymous" class="wxmsg_content_hwebimg" src="#{content_values}" onerror="this.src='#{error_img}'" >
                 """
