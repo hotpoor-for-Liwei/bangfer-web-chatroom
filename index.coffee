@@ -372,7 +372,7 @@ $ ->
         cu_el = $(evt.currentTarget)
         cu_roomId = cu_el.data("room-id")
         cu_scrollTop = cu_el.scrollTop()
-        if cu_scrollTop <5 && !isLoadingMore
+        if cu_scrollTop <5 and !isLoadingMore
             if rooms_info[cu_roomId].last_comment_id?
                 loadHistory(cu_roomId)
 
