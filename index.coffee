@@ -200,7 +200,7 @@ $ ->
         $(".comments_area").empty()
         $(".comments_area").attr("data-room-id",roomId)
         $(".comments_area").on "scroll",(e)->
-            onRoomScroll
+            onRoomScroll(e)
         $.ajax
             url: 'http://www.hotpoor.org/api/comment/load'
             type: 'POST'

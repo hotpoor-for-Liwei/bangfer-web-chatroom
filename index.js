@@ -55,7 +55,7 @@
       $(".comments_area").empty();
       $(".comments_area").attr("data-room-id", roomId);
       $(".comments_area").on("scroll", function(e) {
-        return onRoomScroll;
+        return onRoomScroll(e);
       });
       return $.ajax({
         url: 'http://www.hotpoor.org/api/comment/load',
