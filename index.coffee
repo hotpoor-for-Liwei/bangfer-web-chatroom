@@ -140,6 +140,12 @@ $ ->
             min-width:10px;
             max-height:200px;
         }
+        .wxmsg_load_tip{
+            text-align:center;
+            color:#999;
+            font-size:14px;
+            padding:5px;
+        }
     </style>
     """
     $("#hotpoor_shares").append """
@@ -192,6 +198,9 @@ $ ->
     members_json = {}
     load_start = ()->
         $(".comments_area").empty()
+        $(".comments_area").attr("data-room-id",roomId)
+        $(".comments_area").on "scroll",(e)->
+            onRoomScroll
         $.ajax
             url: 'http://www.hotpoor.org/api/comment/load'
             type: 'POST'
@@ -314,6 +323,58 @@ $ ->
         """
         
         $('.comments_area').prepend msg_html
+    loadHistory = (currentRoomId)->
+        isLoadingMore = true
+        $('.comments_area').prepend """
+        <div class="wxmsg_load_tip">加载中...</div>
+        """
+        $.ajax
+            url: 'http://www.hotpoor.org/api/comment/load'
+            type: 'POST'
+            dataType: 'json'
+            data:
+                app: 'bangfer'
+                aim_id: currentRoomId
+                comment_id: rooms_info[currentRoomId].last_comment_id
+            success: (data)->
+                console.log data
+                if data.info == "ok"
+                    rooms_info[currentRoomId].last_comment_id = data.last_comment_id
+                    members_json_now = members_json
+                    members_json_new = data.members
+                    members_json = $.extend({}, members_json_now,members_json_new)
+                    comments = data.comments
+                    for comment in comments by -1
+                        _msg = [comment[3],{
+                            "content": comment[4],
+                            "nickname": members_json[comment[1]].nickname,
+                            "headimgurl": members_json[comment[1]].headimgurl,
+                            "time": comment[2],
+                            "user_id": comment[1],
+                            "tel": members_json[comment[1]].tel,
+                            "plus": comment[5],
+                            "sequence": comment[0],
+                            "comment_id": data.comment_id,
+                        },roomId]
+                        console.log _msg
+                        loadMessage(_msg)
+                        if not rooms_info[currentRoomId]["latestComment"]?
+                            rooms_info[currentRoomId]["latestComment"] = _msg
+                            item_text = ""
+                            $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
+                    isLoadingMore = false
+                    $(".wxmsg_load_tip").remove()
+            error: (error)->
+                console.log(error)
+
+    isLoadingMore = false
+    onRoomScroll = (evt)->
+        cu_el = $(evt.currentTarget)
+        cu_roomId = cu_roomId.data("room-id")
+        cu_scrollTop = cu_el.scrollTop()
+        if cu_scrollTop <10 && !isLoadingMore
+            if rooms_info[cu_roomId].last_comment_id?
+                loadHistory(cu_roomId)
 
     formatDate = (now)->
         now_date = new Date(now * 1000)
