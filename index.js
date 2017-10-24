@@ -110,8 +110,7 @@
     });
     $("body").on("click", ".wxmsg_content_hqwebimg,.wxmsg_content_hwebimg", function(evt) {
       return wx.previewImage({
-        current: this.src,
-        urls: rooms_info[roomId].roomImages
+        current: this.src
       });
     });
     loadMessage = function(msg) {

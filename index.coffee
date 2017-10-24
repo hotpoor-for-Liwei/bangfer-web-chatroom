@@ -231,7 +231,7 @@ $ ->
     $("body").on "click",".wxmsg_content_hqwebimg,.wxmsg_content_hwebimg",(evt)->
         wx.previewImage
             current: this.src, #当前显示图片的http链接
-            urls: rooms_info[roomId].roomImages #需要预览的图片http链接列表
+            # urls: rooms_info[roomId].roomImages #需要预览的图片http链接列表
     loadMessage = (msg)->
         msgType = msg[0]
         roomId = msg[2]
