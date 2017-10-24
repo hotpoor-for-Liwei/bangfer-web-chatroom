@@ -362,7 +362,7 @@ $ ->
                         },roomId]
                         console.log _msg
                         loadMessage(_msg)
-                        $(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0].scrollIntoView(false)
+                        $(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0].scrollIntoView(true)
                         if not rooms_info[currentRoomId]["latestComment"]?
                             rooms_info[currentRoomId]["latestComment"] = _msg
                             item_text = ""
