@@ -58,6 +58,8 @@ $ ->
             font-size:12px;
             padding:1px 5px;
             width: fit-content;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
         }
         .wxmsg_head_area{
             width:100%;
@@ -102,6 +104,8 @@ $ ->
             box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
             position: relative;
             width: fit-content;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
             min-width:15px;
             max-width:500px;
         }
@@ -372,7 +376,7 @@ $ ->
                     members_json_new = data.members
                     members_json = $.extend({}, members_json_now,members_json_new)
                     comments = data.comments
-                    commentsequence_flag = rooms_info[roomId].createcommentsequence
+                    commentsequence_flag = null
                     for comment in comments by -1
                         _msg = [comment[3],{
                             "content": comment[4],
@@ -387,11 +391,13 @@ $ ->
                         },roomId]
                         console.log _msg
                         loadMessage(_msg)
-                        $(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0].scrollIntoView(true)
                         if not rooms_info[currentRoomId]["latestComment"]?
                             rooms_info[currentRoomId]["latestComment"] = _msg
                             item_text = ""
                             $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
+                        if not commentsequence_flag?
+                            commentsequence_flag = "#{data.comment_id}_#{comment[0]}"
+                    scrollIntoElement(roomId,$(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0])
                     $(".wxmsg_load_tip").text("加载成功！")
                     setTimeout ()->
                         $(".wxmsg_load_tip").remove()
@@ -401,6 +407,11 @@ $ ->
             error: (error)->
                 console.log(error)
 
+    scrollIntoElement = (currentRoomId,el) ->
+        roomEl = $(".comments_area")
+        if not typeof(el)?
+            roomEl.stop().animate ()->
+                "scrollTop":el.offseTop
     onRoomScroll = (evt)->
         cu_el = $(evt.currentTarget)
         cu_roomId = cu_el.data("room-id")
