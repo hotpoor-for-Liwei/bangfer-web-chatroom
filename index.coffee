@@ -397,6 +397,7 @@ $ ->
                             $(".wxmsg[data-comment-flag=#{rooms_info[roomId].finishcommentsequence}]")[0].scrollIntoView(false)
                         if not commentsequence_flag?
                             commentsequence_flag = "#{data.comment_id}_#{comment[0]}"
+                    console.log $(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0]
                     scrollIntoElement(roomId,$(".wxmsg[data-comment-flag=#{commentsequence_flag}]")[0])
                     $(".wxmsg_load_tip").text("加载成功！")
                     setTimeout ()->
